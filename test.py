@@ -5,9 +5,9 @@ from songs import songs_handler
 
 
 def main():
+    pass
     # mem_fs = MemoryFS()
     # drv_fs = OSFS("~liran/Documents/songs")
-    songs_handler.merge_songs_files()
     # fs.copy.copy_fs(drv_fs, mem_fs)
     # print(mem_fs.listdir('.'))
 

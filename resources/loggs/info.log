@@ -1,0 +1,12 @@
+INFO:root:new user added: liran
+INFO:root:new user added: liran -> 3bfa1353-8a73-11ec-91e8-70cf49f0dd99
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in
+INFO:menu_loger:user: 57277d42-8a5b-11ec-ac0c-70cf49f0dd99 tried to get in but failed
+INFO:menu_loger:user: 06f800fa-8a6e-11ec-a5a6-70cf49f0dd99 tried to get in but failed
+INFO:menu_loger:user: 112e95b7-8a73-11ec-b018-70cf49f0dd99 logged in
+INFO:menu_loger:user: 3bfa1353-8a73-11ec-91e8-70cf49f0dd99 tried to get in but failed
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in
+INFO:menu_loger:user: 4822cef4-8a5b-11ec-8688-70cf49f0dd99 logged in

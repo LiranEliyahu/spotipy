@@ -32,19 +32,23 @@ def sign_user():
 
 def add_artist_data(artist,
                     path="C:\\Users\\liran\\Documents\\giTasks\\spotipy\\resources\\userAndArtistData\\artist.json"):
-    with open(path, 'r+') as file:
-        artist_dict = {
-            "_id": artist.id,
-            "artist_name": artist.user_name,
-            "password": artist.password,
-            "playlist": artist.playlist
-        }
+    try:
+        with open(path, 'r+') as file:
+            artist_dict = {
+                "_id": artist.id,
+                "artist_name": artist.user_name,
+                "password": artist.password,
+                "playlist": artist.playlist
+            }
 
-        file_data = json.load(file)
-        file_data["artist"].append(artist_dict)
-        file.seek(0)
-        json.dump(file_data, file, indent=4)
-        logger.info('new artist added: ' + artist.user_name)
+            file_data = json.load(file)
+            file_data["artist"].append(artist_dict)
+            file.seek(0)
+            json.dump(file_data, file, indent=4)
+            logger.info('new artist added: ' + artist.user_name)
+            return True
+    except Exception as e:  # work on python 3.x
+        logger.error('Failed to upload to ftp: ' + str(e))
 
 
 def add_user_data(user,
@@ -63,6 +67,7 @@ def add_user_data(user,
             file.seek(0)
             json.dump(file_data, file, indent=4)
             logging.info('new user added: ' + user.user_name + " -> " + user.id)
+            return True
     except Exception as e:  # work on python 3.x
         logger.error('Failed to upload to ftp: ' + str(e))
 
@@ -70,35 +75,29 @@ def add_user_data(user,
 def login_user(path="C:\\Users\\liran\\Documents\\giTasks\\spotipy\\resources\\userAndArtistData\\users.json"):
     user_name = input("enter user name: ")
     password = input("enter password: ")
-    with open(path, "r") as users_data:
-        users = json.load(users_data)
-        for user in users["users"]:
-            if user_name in user["user_name"] and context.verify(password, user["password"]):
-                logger.info("user: " + user["_id"] + " logged in")
-                print("ok")
-                return True
-            else:
-                logger.info("user: " + user["_id"] + " tried to get in but failed")
-                print("try again")
-                return False
+    try:
+        with open(path, "r") as users_data:
+            users = json.load(users_data)
+            for user in users["users"]:
+                if user_name in user["user_name"] and context.verify(password, user["password"]):
+                    logger.info("user: " + user["_id"] + " logged in")
+                    print("ok")
+                    return True
+                else:
+                    logger.info("user: " + user["_id"] + " tried to get in but failed")
+                    print("try again")
+                    return False
+    except Exception as e:  # work on python 3.x
+        logger.error('Failed to upload to ftp: ' + str(e))
 
 
 def menu_handler():
     # all the menus
-    welcome_menu = ConsoleMenu("Spotipy", "welcome to the best music app without music!")
-    login_menu = ConsoleMenu("login", "login to enjoy tons of song titles")
-    sign_up_menu = ConsoleMenu("sign up", "sign up to enjoy tons of song titles")
     artist_menu = ConsoleMenu("sign up", "sign up to enjoy tons of song titles")
-    main_menu = ConsoleMenu("hey bro", "welcome to the best music app without music!")
+    main_menu = ConsoleMenu("Spotipy\nhey bro", "welcome to the best music app without music!")
     user_menu = ConsoleMenu("user controls", "add some, remove some it's your choice!")
     search_manu = ConsoleMenu("search", "come on, try something")
 
-    # login & sign up menus
-    login_func = FunctionItem("login", login_user)
-    signup_func = FunctionItem("sign up", sign_user)
-    login_menu.append_item(login_func)
-    artist_menu.append_item(login_func)
-    sign_up_menu.append_item(signup_func)
 
     # search menu
     artist_songs_func = FunctionItem("artists songs", get_artist_songs, [merge_songs_files()])
@@ -121,11 +120,7 @@ def menu_handler():
     user_menu.append_item(show_playlist)
 
     # all the submenus in welcome menu
-    login = SubmenuItem("login", login_menu, menu=welcome_menu)
-    sign_up = SubmenuItem("sign up", sign_up_menu, menu=welcome_menu)
     artist_login = SubmenuItem("artist", artist_menu, menu=welcome_menu)
-    welcome_menu.append_item(login)
-    welcome_menu.append_item(sign_up)
     welcome_menu.append_item(artist_login)
 
     # all the submenus in main menu
@@ -134,9 +129,14 @@ def menu_handler():
     main_menu.append_item(search_submenu)
     main_menu.append_item(user_submenu)
 
-    welcome_menu.show()
-    print(login_func.get_return())
-    if login.get_return():
-        welcome_menu.clear_screen()
-        main_menu.show()
+    user_input = input("login or singup? you can exit")
+
+    while user_input != "exit":
+        if user_input == "login":
+            if login_user():
+                main_menu.show()
+            else:
+                print("try again")
+        elif user_input == "signup":
+            sign_user()
 

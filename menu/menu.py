@@ -76,11 +76,11 @@ def login_user(path="C:\\Users\\liran\\Documents\\giTasks\\spotipy\\resources\\u
             if user_name in user["user_name"] and context.verify(password, user["password"]):
                 logger.info("user: " + user["_id"] + " logged in")
                 print("ok")
-                break
+                return True
             else:
                 logger.info("user: " + user["_id"] + " tried to get in but failed")
                 print("try again")
-                break
+                return False
 
 
 def menu_handler():
@@ -135,3 +135,8 @@ def menu_handler():
     main_menu.append_item(user_submenu)
 
     welcome_menu.show()
+    print(login_func.get_return())
+    if login.get_return():
+        welcome_menu.clear_screen()
+        main_menu.show()
+

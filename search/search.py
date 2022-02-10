@@ -22,9 +22,9 @@ def get_top_ten(songs_list, artist):
     return nlargest(10, list(get_artist_songs(songs_list, artist)), key=lambda x: x[1])
 
 
-def get_album_songs(album_name, artist_name, songs_list):
-    album = set()
+def get_album_songs(album_name, songs_list):
+    album = []
     for song in songs_list:
-        if song["artist"]["name"] == artist_name and song["album"]["name"] == album_name:
-            album.add([song["name"], song["popularity"]])
+        if song["track"]["album"]["name"] == album_name:
+            album.append([song["track"]["name"],  song["track"]["popularity"]])
     return album

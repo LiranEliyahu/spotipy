@@ -1,0 +1,34 @@
+{
+    "users": [
+        {
+            "_id": "4822cef4-8a5b-11ec-8688-70cf49f0dd99",
+            "user_name": "liran",
+            "password": "$pbkdf2-sha256$30000$O0cI4fzfmxPC2DsHAGBMSQ$nBNIeLNA8.SMe.j.0P25dBI9BY7OqJ9WfVdJQT/OzjM",
+            "playlist": {}
+        },
+        {
+            "_id": "57277d42-8a5b-11ec-ac0c-70cf49f0dd99",
+            "user_name": "oren",
+            "password": "$pbkdf2-sha256$30000$am0NIURojbH2fu8957zXeg$YbSTXQbs9tLnnzzlSra7gAdqDHMl7g68pejdOzyqIjg",
+            "playlist": {}
+        },
+        {
+            "_id": "06f800fa-8a6e-11ec-a5a6-70cf49f0dd99",
+            "user_name": "test",
+            "password": "$pbkdf2-sha256$30000$1hrj3Nubc6619t7b29v7fw$2RFpBQ2nrT4079i7YcyfqHmgoLStJStsOYdI3B7P6oY",
+            "playlist": {}
+        },
+        {
+            "_id": "112e95b7-8a73-11ec-b018-70cf49f0dd99",
+            "user_name": "liran",
+            "password": "$pbkdf2-sha256$30000$RuhdC4EwRqiVMobQOkeo1Q$7LhTpjz0.1Z8BQN5LMJB/wmv96IfZSyGtBv.8C8MYHI",
+            "playlist": {}
+        },
+        {
+            "_id": "3bfa1353-8a73-11ec-91e8-70cf49f0dd99",
+            "user_name": "liran",
+            "password": "$pbkdf2-sha256$30000$y5nTWkuptbaWknLu3dt7jw$lZsWFsCvYbfvtnvtLIGL1OFARvwRATYRd0l8r7ghEic",
+            "playlist": {}
+        }
+    ]
+}

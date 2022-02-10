@@ -1,5 +1,4 @@
 from uuid import uuid1
-from passlib.context import CryptContext
 
 
 class User:
@@ -8,27 +7,28 @@ class User:
         self.is_premium = premium
         self.user_name = user_name
         self.password = password
-        self.playlist = {str: list}
+        self.playlist = {}
 
-    def add_song_to_playlist(self, song_name, playlist_name):
+    def add_song_to_playlist(self, song_name):
+        playlist_name = input("enter playlist name: ")
         if self.is_premium:
             self.playlist[playlist_name].append(song_name)
-            return True
+            print("added new song!")
         else:
             if len(self.playlist[playlist_name]) != 20:
                 self.playlist[playlist_name] = []
+                print("added new song!")
             else:
-                return False
+                print("pay up")
 
-    def create_playlist(self, playlist_name):
+    def create_playlist(self):
+        playlist_name = input("enter playlist name: ")
         if self.is_premium:
             self.playlist[playlist_name] = []
-            return True
+            print("added new playlist!")
         else:
             if len(self.playlist) != 5:
                 self.playlist[playlist_name] = []
+                print("added new playlist!")
             else:
-                return False
-
-    def verify_user(self, password, user_name, context):
-        return True if user_name == self.user_name and context.verify(password) else False
+                print("pay up")
